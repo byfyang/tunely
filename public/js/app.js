@@ -4,7 +4,7 @@
  * into functions and objects as needed.
  *
  */
-
+var formData;
 
 /* hard-coded data! */
 var sampleAlbums = [];
@@ -43,9 +43,44 @@ $(document).ready(function() {
     albums.forEach(function(album) {
       renderAlbum(album);
     });
+      $('#album-form form').on('submit', function(event){
+      event.preventDefault();
+      formData=$(this).serialize();
+      console.log(formData);
+      $(this).trigger("reset");
 
+      $.post('/api/albums',formData).done(function (data){
+        
+      }); 
   });
+    
+  });
+
+
 });
+
+// $( "form" ).on( "submit", function( event ) {
+//   event.preventDefault();
+//   console.log( $( this ).serialize() );
+// });
+
+
+// app.post('/api/albums', function(req, res) {
+//       $('#form').on("submit", {
+//         var submit = req.body.name; 
+//         // submit.pus console.log(submit); }); 
+//       });
+
+
+
+    //   $.post('/api/albums', formData, function(album){
+    //     console.log('album after Post', album);
+    //     renderAlbum(album);
+    //   });
+    // });
+
+
+
 
 
 
